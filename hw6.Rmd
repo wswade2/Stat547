@@ -21,7 +21,7 @@ ewb <- read.table("C:/Users/Wade/Dropbox/Psych 546E 2016/Datasets/ewblight.txt",
 head(ewb)
 ```
 
-```{r}
+```{r warning = FALSE}
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(reshape2))
 suppressPackageStartupMessages(library(psych))
@@ -108,6 +108,24 @@ print(plots[["x2"]])
 # works
 ```
 
+```{r}
+set.seed(154)
+D <- data.frame(
+    x1 = runif(100),
+    x2 = rnorm(100)
+)
+
+library(ggplot2)
+plots <- list()
+(for(nm in names(ewb)) {
+    plots[[nm]] <- ggplot(data=ewb) + geom_density(aes_string(x=nm))
+})
+
+print(plots[["x1"]])
+print(plots[["x2"]])
+# does not work
+```
+
 
 ```{r}
 # lapply(names(ewb)[ncol(ewb)], function(x) {
@@ -157,15 +175,96 @@ sapply(3:6,
 # works
 ```
 
+```{r}
+layout(matrix(c(1,2,5,3,4,5),nrow=2,byrow = TRUE))
+sapply(3:6, 
+  function(x) {
+    bp <- barplot(matrix(ewb[,x],nrow=2,byrow=TRUE),beside=TRUE,col=barcols)
+    title(main=names(ewb[x]))
+    axis(1,at=colMeans(bp),c("M1","M2"),lwd=0,lwd.tick=1)
+    abline(h=0)
+  }
+)
+```
+
+```{r}
+
+for (i in 1 : 11) {
+col.i <- ewb[i]
+filename <- paste (col.i, ".jpg", sep="")
+barplot(ewb[, i], xlab = "Language Skills", ylim = c(1,3), xpd = FALSE,
+     axes=FALSE, cex.names=.8, col=c("darkblue","red",
+    "darkgreen", "yellow"))
+dev.off()
+}
+```
+
+
 
 Now, we will move onto the last task: working with a nested dataframe.
 
+```{r warning = FALSE}
+library(broom)
+library(gapminder)
+```
 
+First, we will nest the data by country and continent.
 
+```{r}
+nest <- gapminder %>% 
+   group_by(continent, country) %>% 
+   nest()
+head(nest)
+nest$data[[1]]
+```
+
+In the above code, we have rearranged the gapminder dataset so that each row corresponds to a unique country. Within each country specific row are several other rows at a lower level of analysis that correspond to the 12 or so lines of observations we have for that specific country. These 12 lines of data are actually stored as lists within the "data" column within the nest dataframe.
+
+One issue with this nested dataset is the way the list columns are organized (poorly).  
+
+```{r}
+(fit <- lm(lifeExp ~ I(year - 1950), data = nest[[1, "data"]]))
+
+le_vs_yr <- function(df) {
+  lm(lifeExp ~ I(year - 1950), data = df)
+}
+le_vs_yr(nest[[1, "data"]])
+```
+
+The stat545 lesson on this topic provides us with a way to turn our one-line model into a function that can be used to automate analysis for each country in the dataset.
+
+```{r}
+(fits <- map(nest$data[1:2], le_vs_yr))
+```
+
+This code uses the map function from the purrr package. It's very similar to the lapply function in base R and is used for doing computations involving list columns. This code also is a mini-test for a function that we wil produce soon. Instead of testing a model for all 142 countries, we are testing a model for 2 of them.
+
+```{r}
+(nest <- nest %>% 
+   mutate(reg = map(data, le_vs_yr)))
+```
+
+What this code does is make yet another column that is filled with regression models. We are unfortunately still dealing with list columns. Sometimes things have to get worse before they can get better.
+
+```{r}
+(nest <- nest %>% 
+  mutate(tidy = map(reg, tidy)))
+```
+
+```{r}
+(reg_output <- nest %>% 
+   select(continent, country, tidy) %>% 
+   unnest(tidy))
+```
+
+What we've done here with this code is really amazing to me. We have created a nested version of our original dataframe, ran regression models on each of the elements nested within the new dataframe, and then transformed the dataframe back into an unnested one, but with the regression outputs retained. I can see how this will be very useful in the future.
+
+Next we can explore the output that we have generated.
 
 
 
 <h4>Process</h4>
 I had to do some online research into how for loops work.
 Figuring out how to get the right titles onto the automated plots was tricky and took a lot of trial and error. Methods that I thought should have worked simply did not.
+<a href=http://stat545.com/block024_group-nest-split-map.html> This page </a>was quite useful for the nesting task. Working through it gave me a much better understanding of how nesting works.
 
