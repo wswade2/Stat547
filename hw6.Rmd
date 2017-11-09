@@ -49,14 +49,16 @@ for (var in seq) {
 You can use "next" instead of break if you want to skip a variable. 
 
 ```{r}
+names <- names(ewb)
 names(ewb)
+classes<-sapply(ewb, class)
 ```
 
 
 ```{r}
-# for(name in names) {
-#  hist(ewb[,name])
-# }
+for(name in names) {
+ hist(ewb[,name])
+}
 ```
 
 This code appears to work, but the titles are all messed up. I have to use a for loop with a different syntax to put the column names on the graphs.
@@ -73,13 +75,7 @@ Perfect! Now I have code that will generate histograms for every variable in a d
 
 Next, let's try to implement ggplot2 instead of just using base R. We'll explore this in the context of 2X2 interaction bar plots.
 
-```{r}
-for (i in 1:11) {
-  hist(ewb[,name],
-       main = paste(colnames(ewb)[i]),
-       xlab = "") 
-}
-```
+
 
 
 
