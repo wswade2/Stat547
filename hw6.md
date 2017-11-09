@@ -150,36 +150,49 @@ Perfect! Now I have code that will generate histograms for every variable in a d
 Next, let's try to implement ggplot2 instead of just using base R. We'll explore this in the context of 2X2 interaction bar plots.
 
 
-
-
-
+```r
+dodge <- position_dodge(width=0.9)
+limits <- aes(ymax = mean + (se), ymin=mean - (se))
+for (i in 1:11) {
+ggplot(ewb, aes(x = MEANDEP, y = mean(MEANPFR), fill = ACMPLM36))+
+  geom_bar(stat='identity', position=dodge)+
+  geom_errorbar(limits, position=dodge, width=0.25)+
+  labs(y="Estimation of Hours Saved", x= "Gain/Save Frame",
+       title = "Effect of Time Frame on Estimation of Hours Saved")+
+  scale_fill_hue(name="Frame", 
+                 breaks=c("event","time"),
+                 labels=c("Event", "Time")) 
+}
+```
 
 
 ```r
-?paste 
+# lapply(names(ewb)[ncol(ewb)], function(x) {
+#     ewb_data <- ewb[, c(x, 'MEANDEP')]
+#     names(ewb_data)[1] <- 'Var'
+# 
+#     ggplot(ewb_data, aes(x=Var, fill=factor(Var))) +
+#       geom_bar() + 
+#       facet_grid(~MEANDEP) +
+#       theme_bw()
+#   })
 ```
 
-```
-## starting httpd help server ... done
-```
-
-```r
-(paste(ewb$name))
-```
-
-```
-## character(0)
-```
 
 ```r
-paste(colnames(ewb))
+# plotHistFunc <- function(x, na.rm = TRUE, ...) {
+#   nm <- names(x)
+#   for (i in seq_along(nm)) {
+# plots <-ggplot(x,aes_string(x = nm[i])) + geom_histogram(alpha = .5,fill = "dodgerblue")
+# ggsave(plots,filename=paste("myplot",nm[i],".png",sep=""))
+#   }
+# }
+#  
+# plotHistFunc(df)
 ```
 
-```
-##  [1] "ID"       "MEANDEP"  "MEANINC"  "MEANPFR"  "MEANSEN"  "ACMPLM36"
-##  [7] "ADISRM36" "AEXPRM36" "BEXTSM36" "BINTSM36" "BKSTDO36"
-```
 
+Now, we will move onto the last task: working with a nested dataframe.
 
 
 
@@ -188,4 +201,5 @@ paste(colnames(ewb))
 
 <h4>Process</h4>
 I had to do some online research into how for loops work.
+Figuring out how to get the right titles onto the automated plots was tricky and took a lot of trial and error. Methods that I thought should have worked simply did not.
 
