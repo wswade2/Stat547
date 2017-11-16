@@ -5,3 +5,5 @@ You can find my hw assignments below:
 
 <a href=https://github.com/wswade2/Stat547/blob/master/hw6.md>HW 6</a>
 
+<a href=https://github.com/wswade2/Stat545-hw7-wade-wade/blob/master/README.md>HW 7</a>
+
