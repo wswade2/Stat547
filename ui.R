@@ -9,15 +9,14 @@ ui <- fluidPage(
 									 choices = c("BEER", "REFRESHMENT", "SPIRITS", "WINE"),
 									 selected = "WINE"),
 			uiOutput("countryOutput"),
-			tags$img(src="bc_liquor_logo.png")
+			radioButtons("Color", "Histogram Color", 
+									 choices = c("Blue", "Red", "Green", "Purple", "Orange"), selected = "Blue"),
+			tags$img(src="bc_liquor_logo.png", width=275)
 		),
 		mainPanel(
-			tabsetPanel(type="tab",
-									tabPanel("Plot"),
-									tabPanel("Histogram", plotOutput("coolplot"))),
-			plotOutput("coolplot"),
-			br(), br(),
-			tableOutput("results")
+			 tabsetPanel(type="tab",
+			  						tabPanel("Table", tableOutput("mytable")),
+			  						tabPanel("Histogram", plotOutput("myplot")))
 		)
 	)
 )
