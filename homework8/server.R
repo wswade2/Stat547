@@ -28,7 +28,7 @@ server <- function(input, output) {
 		 	return()
 		}
 		ggplot(filtered(), aes(Alcohol_Content)) +
-			geom_histogram()
+			geom_histogram(fill = input$Color)
 	})
 	
 

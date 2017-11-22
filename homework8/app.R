@@ -4,7 +4,7 @@ library(tidyverse)
 
 bcl <- read.csv("bcl-data.csv", stringsAsFactors = FALSE)
 
-shinyApp(ui = ui, server = server)
+# shinyApp(ui = ui, server = server)
 
 #shiny::runApp()
 
@@ -12,8 +12,8 @@ shinyApp(ui = ui, server = server)
 # library(rsconnect)
 
 
-library(rsconnect)
-rsconnect::deployApp('C:/Users/Wade/OneDrive/2017 Fall Semester/Exploratory Statistics/HW8')
+# library(rsconnect)
+rsconnect::deployApp('C:/Users/Wade/OneDrive/2017 Fall Semester/Exploratory Statistics/HW8/homework8')
 
 
 
