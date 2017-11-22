@@ -1,6 +1,8 @@
 library(shiny)
 library(tidyverse)
 
+bcl <- read.csv("bcl-data.csv", stringsAsFactors = FALSE)
+
 server <- function(input, output) {
 	output$countryOutput <- renderUI({
 		selectInput("countryInput", "Country",
