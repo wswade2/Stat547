@@ -1,5 +1,5 @@
 library(ggplot2)
-
+library(Hmisc)
 
 # take dataset
 # split condition (and copy it) so you have 3 columns
@@ -26,3 +26,23 @@ baromax(data = iris,x = "Species", y = "Sepal.Width", fill = "Species")
 # This works, but we want to be able to graph the mean
 
 head(iris)
+
+
+
+baromax<- function(data, x, y, fill, error_width=.2){
+	ggplot(data) +
+		aes_string(x, y, fill = fill) +
+		stat_summary(fun.y=mean, geom = "bar") +
+		stat_summary(fun.data = mean_cl_normal,
+								 geom="errorbar",
+								 width=error_width,
+								 position=position_dodge(width=.9)) +
+		theme_bw() +
+		theme(panel.grid.major = element_blank(),
+					panel.grid.minor = element_blank())
+
+}
+
+baromax(data = iris,x = "Species", y = "Sepal.Width", fill = "Species")
+
+
