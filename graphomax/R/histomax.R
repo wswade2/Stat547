@@ -1,17 +1,8 @@
-# Hello, world!
+# Welcome to the histomax function!
 #
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Build and Reload Package:  'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+# This function is designed to plot a histogram for every numeric variable
+# in a dataset using just one line of code.
+# The color of the histograms can be set using colorz = ""
 
 
 
@@ -28,16 +19,3 @@ histomax <- function(data, colorz="gray85"){
 	}
 }
 
-
-histomax(iris)
-
-
-# For loops follow the following syntax:
-#
-# 	for (var in seq) { expr }
-#
-# That is to say: For each variable in this
-# sequence (or each element in this set), execute this expression.
-
-# roxygen2::roxygenize()
-# library(powers)
