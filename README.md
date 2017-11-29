@@ -12,3 +12,5 @@ You can find my hw assignments below:
 <a href=https://github.com/wswade2/Stat547/blob/master/homework8/Process.md>HW 8 Process File</a>
 
 <a href=https://wswade2.shinyapps.io/homework8/>HW 8 Published Shiny App</a>
+
+<a href=https://github.com/wswade2/Stat547/blob/master/HW9_Process.md>HW 9 Process File</a>
