@@ -4,6 +4,11 @@ November 28, 2017
 
 <a href=https://github.com/wswade2/Stat547/tree/master/graphomax>View "graphomax" package files here.</a>
 
+<a href=https://github.com/wswade2/Stat547/blob/master/graphomax/R/histomax.R>Code for "histomax" function</a>
+
+<a href=https://github.com/wswade2/Stat547/blob/master/graphomax/R/baromax.R>Code for "baromax" function</a>
+
+<a href=https://github.com/wswade2/Stat547/blob/master/graphomax/DESCRIPTION>Description File</a>
 
 This homework was one of my favorite homeworks so far. There are so many things you can do once you learn how to make your own packages! I'll start by explaining what I wanted to accomplish.
 
