@@ -1,13 +1,13 @@
-# Welcome to the baromax function!
-#
-# This function is designed to plot 2x2 barplots with standard error bars using only
-# one line of code.
-#
-# To use it, simply specify the dataset, x, y, and fill
-# These types of plots are designed for cases where y is numeric and
-# both x and fill are categorical variables.
-#
-# Change the width of the error bars by specifying error_width = ___
+#' Welcome to the baromax function!
+#'
+#' This function is designed to plot 2x2 barplots with standard error bars using only
+#' one line of code.
+#'
+#' To use it, simply specify the dataset, x, y, and fill
+#' These types of plots are designed for cases where y is numeric and
+#' both x and fill are categorical variables.
+#'
+#' Change the width of the error bars by specifying error_width = ___
 
 baromax<- function(data, x, y, fill, error_width=.2){
 	ggplot(data) +

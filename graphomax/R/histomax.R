@@ -1,8 +1,11 @@
-# Welcome to the histomax function!
-#
-# This function is designed to plot a histogram for every numeric variable
-# in a dataset using just one line of code.
-# The color of the histograms can be set using colorz = ""
+#' Welcome to the histomax function!
+#'
+#' This function is designed to plot a histogram for every numeric variable
+#' in a dataset using just one line of code.
+#' The color of the histograms can be set using colorz = ""
+#'
+#' Example:
+#' histomax(iris)
 
 
 

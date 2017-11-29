@@ -5,7 +5,8 @@ Version: 0.1.0
 Author: Wade Wade
 Maintainer: Wade Wade <yourself@somewhere.net>
 Description: Automated functions for creating bar plots and histograms
-License: What license is it under?
+License: This package is intended for personal use.
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Suggests: testthat
