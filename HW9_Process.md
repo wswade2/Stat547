@@ -4,6 +4,8 @@ November 28, 2017
 
 <a href=https://github.com/wswade2/Stat547/tree/master/graphomax>View "graphomax" package files here.</a>
 
+<a href=https://github.com/wswade2/Stat547/blob/master/graphomax/demonstration.pdf>Package demonstration</a>
+
 <a href=https://github.com/wswade2/Stat547/blob/master/graphomax/R/histomax.R>Code for "histomax" function</a>
 
 <a href=https://github.com/wswade2/Stat547/blob/master/graphomax/R/baromax.R>Code for "baromax" function</a>
